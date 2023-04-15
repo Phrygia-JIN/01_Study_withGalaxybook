@@ -1,0 +1,48 @@
+#get_user_info
+from pykiwoom.kiwoom import *
+
+kiwoom = Kiwoom()
+kiwoom.CommConnect(block=True)
+
+account_num = kiwoom.GetLoginInfo("ACCOUNT_CNT") # 전체 계좌수
+accounts = kiwoom.GetLoginInfo("ACCNO") # 전체 계좌
+user_id = kiwoom.GetLoginInfo("USER_ID") # 사용자 ID
+user_name = kiwoom.GetLoginInfo("USER_NAME") # 사용자명
+keyboard = kiwoom.GetLoginInfo("KEY_BSECGB") # 키보드 보안 해지여부
+firewall = kiwoom.GetLoginInfo("FIREW_SECGB") # 방화벽 설정 여부
+
+print(account_num)
+print(accounts)
+print(user_id)
+print(user_name)
+print(keyboard)
+print(firewall)
+
+
+# get_code_list
+from pykiwoom.kiwoom import *
+
+kiwoom = Kiwoom()
+kiwoom.CommConnect(block=True)
+
+kospi = kiwoom.GetCodeListByMarket('0')
+kosdaq = kiwoom.GetCodeListByMarket('10')
+etf = kiwoom.GetCodeListByMarket('8')
+
+print(len(kospi), kospi)
+print(len(kosdaq), kosdaq)
+print(len(etf), etf)
+
+"""
+코스피 = 0
+ELW = 3
+뮤추얼펀드 = 4
+신주인수권 = 5
+리츠 = 6
+ETF = 8
+하이얼펀드 = 9
+코스닥 = 10
+K-OTC = 30
+코넥스 = 50
+
+"""
