@@ -46,3 +46,99 @@ K-OTC = 30
 코넥스 = 50
 
 """
+# get_code_name
+from pykiwoom.kiwoom import *
+
+kiwoom = Kiwoom()
+kiwoom.CommConnect(block=True)
+
+name = kiwoom.GetMasterCodeName("005930")
+print(name)
+
+# get_Stock_cnt
+from pykiwoom.kiwoom import *
+
+kiwoom = Kiwoom()
+kiwoom.CommConnect(block=True)
+
+stock_cnt = kiwoom.GetMasterListedStockCnt("005930")
+print("삼성전자 상장주식수 : ", stock_cnt)
+
+#get_connect_State
+from pykiwoom.kiwoom import *
+
+kiwoom = Kiwoom()
+kiwoom.CommConnect(block=True)
+
+state = kiwoom.GetConnectState()
+if state == 0:
+    print("미연결")
+elif state == 1:
+    print("연결완료")
+
+# get_Construction
+# 감리 구분
+# 주가가 단기간에 급등, 증권거래소에 의해 「요주의」주식으로 분류된 종목을 감리종목이라 합니다. 
+# 감리종목은 최근 6일간 주가상승폭이 가격제한폭(상한가)의 5배를 초과하거나 최근 12일간의 주가 상승폭이 가격제한폭의 8배를 넘어서는 상태가 3일간 지속될 경우 감리종목으로 지정
+from pykiwoom.kiwoom import *
+
+kiwoom = Kiwoom()
+kiwoom.CommConnect(block=True)
+
+Cons = kiwoom.GetMasterConstruction("005930")
+print(Cons)
+
+# get_stock_date
+from pykiwoom.kiwoom import *
+
+kiwoom = Kiwoom()
+kiwoom.CommConnect(block=True)
+
+stock_date = kiwoom.GetMasterListedStockDate("005930")
+print(stock_date)
+print(type(stock_date))
+
+# get_Last_price
+from pykiwoom.kiwoom import *
+
+kiwoom = Kiwoom()
+kiwoom.CommConnect(block=True)
+
+last_price = kiwoom.GetMasterLastPrice("005930")
+print(int(last_price))
+print(type(last_price))
+
+# get_stock_state
+from pykiwoom.kiwoom import *
+
+kiwoom = Kiwoom()
+kiwoom.CommConnect(block=True)
+
+stock_state = kiwoom.GetMasterStockState("005930")
+print(stock_state)
+
+# get_Theme_list
+from pykiwoom.kiwoom import *
+import pprint # 데이터 보기 좋게 출력
+
+kiwoom = Kiwoom()
+kiwoom.CommConnect(block=True)
+
+group = kiwoom.GetThemeGroupList(1) # dict 형식
+pprint.pprint(group)
+
+print(group['화장품'])
+
+# get_Theme_code
+from pykiwoom.kiwoom import *
+import pprint
+
+kiwoom = Kiwoom()
+kiwoom.CommConnect(block=True)
+
+tickers = kiwoom.GetThemeGroupCode('141')
+pprint.pprint(tickers)
+
+for ticker in tickers:
+    name = kiwoom.GetMasterCodeName(ticker)
+    print(ticker, name)
